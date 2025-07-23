@@ -1,0 +1,15 @@
+{% extends "../../_adminLayout.html" %}
+{% import "../_paginationMacro.html" as macro %}
+
+{% block content %}
+  <details name="list" open>
+    <summary>Trash ({{ postCount }})</summary>
+    {% include './_trashList.html' %}
+    {{ macro.pagination('admin/trash.html', pageNr, postCount, pageSize) }}
+  </details>
+{% endblock %}
+
+{% block scripts %}
+  {% import '../_deleteConfirmModalMacro.html' as deleteMacro %}
+  {{ deleteMacro.deleteModal('admin/trash/delete') }}
+{% endblock %}

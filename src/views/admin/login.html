@@ -1,0 +1,9 @@
+{% extends "../_adminLayout.html" %}
+{# TODO: token based authentication, prepared login form for token based authentication #}
+{% block content %}
+  <form action="/login" method="post">
+    <input type="text" name="username" placeholder="username" />
+    <input type="password" name="password" placeholder="password" />
+    <input type="submit" value="Login" />
+  </form>
+{% endblock %}

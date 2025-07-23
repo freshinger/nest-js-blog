@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/css/pico.min.css" rel="stylesheet" />
+    <link href="/css/pico.colors.min.css" rel="stylesheet" />
+    <script src="/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: ".editable",
+        license_key: "gpl",
+        menubar: false,
+      });
+    </script>
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="container">
+      {% block header %}
+        <nav>
+          <ul>
+            <li>
+              <strong><a href="/admin/">Admin Dashboard</a></strong>
+            </li>
+          </ul>
+          <ul>
+            <li><a href="/admin/newPost.html">New Post</a></li>
+            <li><a href="/admin/blogList.html">Blog List</a></li>
+            <li><a href="/admin/trash.html">Trash</a></li>
+          </ul>
+        </nav>
+      {% endblock %}
+    </header>
+
+    <main class="container">
+      {% block content %}
+      {% endblock %}
+    </main>
+
+    {% block scripts %}
+    {% endblock %}
+  </body>
+</html>

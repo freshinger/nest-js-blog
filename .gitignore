@@ -2,7 +2,7 @@
 /dist
 /node_modules
 /build
-
+/public/js/tinymce
 # Logs
 logs
 *.log
