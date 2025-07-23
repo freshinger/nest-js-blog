@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import * as nunjucks from 'nunjucks';
 import * as path from 'path';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   
@@ -19,7 +20,7 @@ async function bootstrap() {
   })
   app.useStaticAssets(publicFolder);
   app.setBaseViewsDir(views);
-  
+  app.useGlobalPipes(new ValidationPipe());
   app.setViewEngine('njk');
   await app.listen(process.env.PORT ?? 3000);
 }

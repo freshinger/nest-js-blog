@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
 import { BlogService } from './blog.service';
 import { AppRepository } from './app.repository';
+import { AdminController } from './admin/admin.controller';
 
 @Module({
   imports: [],
-  controllers: [AppController],
+  controllers: [AppController, AdminController],
   providers: [AppService, BlogService, AppRepository],
 })
 export class AppModule {}
