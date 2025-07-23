@@ -11,7 +11,7 @@ async function bootstrap() {
 
   const publicFolder = path.join(__dirname, '..', 'public' ); // Directory with static HTML/CSS/JS/other files
   const views = path.join(__dirname,'..','src', 'views'); // Directory with *.njk templates
-  console.log('assets:',publicFolder)
+  
 
   nunjucks.configure(views, {
     autoescape: true,
@@ -21,7 +21,6 @@ async function bootstrap() {
   app.setBaseViewsDir(views);
   
   app.setViewEngine('njk');
-  //app.setGlobalPrefix('api');
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

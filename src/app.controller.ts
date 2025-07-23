@@ -12,8 +12,6 @@ export class AppController {
   @Render('index')
   async getIndex() {
     const posts = await this.blogService.getAllPosts();
-    //TODO: conversion in service
-    posts.map( (post) => {post.createdAtString = new Date(post.createdAt).toLocaleString()})
     return {
       title: 'Homepage',
       posts,
@@ -39,16 +37,27 @@ export class AppController {
     }
   }
 
-  //Post
-  @Get('/post/:postID')
+  //Post by slug 
+  @Get('/post/:postSlug')
   @Render('post')
-  async getPost(@Param('postID') postID: string) {
-const post = await this.blogService.getPostBySlug(postID);
-console.log(post);
+  async getPostBySlug(@Param('postSlug') postSlug: string) {
+    const post = await this.blogService.getPostBySlug(postSlug);
 
     return {
       title: 'Post',
       post
+    }
+  }
+
+  @Get('/post')
+  @Render('post')
+  async getPost() {
+    
+    const posts = await this.blogService.getAllPosts();
+
+    return {
+      title: 'Post',
+      post: posts[0]
     }
   }
 }

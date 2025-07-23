@@ -4,18 +4,11 @@ import { AppService } from './app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { BlogService } from './blog.service';
+import { AppRepository } from './app.repository';
 
 @Module({
-  imports: [
-   // ServeStaticModule.forRoot({
-   //   rootPath: join(__dirname, '..', 'public'),
-   //   exclude: ['/api/{*test}'],
-   //   serveStaticOptions: {
-   //     fallthrough: false,
-   //   },      
-   // }),
-  ],
+  imports: [],
   controllers: [AppController],
-  providers: [AppService, BlogService],
+  providers: [AppService, BlogService, AppRepository],
 })
 export class AppModule {}
