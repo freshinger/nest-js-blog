@@ -1,4 +1,4 @@
-import { Controller, Get, Render} from '@nestjs/common';
+import { Controller, Get, Param, Render, Req} from '@nestjs/common';
 import { Response } from 'express';
 import { AppService } from './app.service';
 import { BlogService } from './blog.service';
@@ -12,6 +12,7 @@ export class AppController {
   @Render('index')
   async getIndex() {
     const posts = await this.blogService.getAllPosts();
+    //TODO: conversion in service
     posts.map( (post) => {post.createdAtString = new Date(post.createdAt).toLocaleString()})
     return {
       title: 'Homepage',
@@ -39,11 +40,15 @@ export class AppController {
   }
 
   //Post
-  @Get('/post')
+  @Get('/post/:postID')
   @Render('post')
-  getPost() {
+  async getPost(@Param('postID') postID: string) {
+const post = await this.blogService.getPostBySlug(postID);
+console.log(post);
+
     return {
-      title: 'Post'
+      title: 'Post',
+      post
     }
   }
 }

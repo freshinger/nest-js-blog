@@ -5,5 +5,7 @@ export interface Post {
     "createdAt": number;
     "teaser": string;
     "content": string;
-    "createdAtString":string
+    "createdAtString"?:string;
+    "slug"?: string;
+    "id"?: string;
 }
