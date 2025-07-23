@@ -1,22 +1,22 @@
-import { Body, Controller, Get, Post, Render, Req } from '@nestjs/common';
+import { Body, Controller, Get, Post, Render, Req, Res } from '@nestjs/common';
 
 import { IsEmail, IsNotEmpty } from 'class-validator';
 
 export class BlogPostDto {
-  @IsNotEmpty()
-  title: string;
+    @IsNotEmpty()
+    title: string;
 
-  @IsNotEmpty()
-  teaser: string;
+    @IsNotEmpty()
+    teaser: string;
 
-  @IsNotEmpty()
-  content: string;
+    @IsNotEmpty()
+    content: string;
 
-  @IsNotEmpty()
-  author: string;
+    @IsNotEmpty()
+    author: string;
 
-  @IsNotEmpty()
-  image: string;
+    @IsNotEmpty()
+    image: string;
 }
 
 @Controller('admin')
@@ -56,14 +56,19 @@ export class AdminController {
 
     @Post('/new')
     @Render('admin/newPost.njk')
-    async postNew(@Body() body: BlogPostDto) {
-        console.log(body);
-        
-        
-
-        return {
-            title: 'Admin',
-            body
+    async postNew(@Body() body: BlogPostDto, @Res() res) {
+        console.log(res);
+        try {
+            return res.redirect('/success');
+        } catch (error) {
+            if (error) {
+                const response = error.getResponse();
+                console.log(response)
+                return res.render('posts/new'), {
+                    title: 'Admin',
+                    body
+                }
+            }
         }
     }
 }
